@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 
@@ -15,25 +14,27 @@ class Tree{
 
 private:
 	Node *_root ;
-	int _size(Node *treeNode);
-	void insert(Node *treeNode, int data);
-	bool contains(Node *treeNode,int i);
-	Node* deleteNode(Node *_root, int data);
+	int size(Node *root);
+	void insert(Node *root, int data);
+	bool contains(Node *root,int data);
+	void deleteNode(Node *&root, int data);
 	Node* minValueNode(Node *root);
-	void deleteTree(Node *treeNode);
-	int parent(Node *treeNode, int data);
-	int left(Node* pRoot, int value);
-	int right(Node* pRoot, int value);
-	void print(Node *_root);
+	void deleteTree(Node *root);
+	int parent(Node *root, int data);
+	int left(Node* pRoot, int data);
+	int right(Node* pRoot, int data);
+	void print(Node *root);
+	void searchData(Node* &curr, int data, Node* &parent);
+	
 public:
 	Tree();  // constructor     
-	~Tree();
+	~Tree(); // destructor
 	void deleteTree() {deleteTree(_root);}
         void insert(int data){insert(_root, data);} 
  	void remove(int data){deleteNode(_root,data);};
-	int size(){return _size(_root);};
+	int size(){return size(_root);};
 	bool contains(int data){return contains(_root,data);};
-	int  root();
+	int root();
 	int parent(int data){return parent(_root, data);};
 	int left(int data){return left(_root, data);};
 	int right(int data){return right(_root, data);};
@@ -42,6 +43,3 @@ public:
 
 };
 };
-
-
-

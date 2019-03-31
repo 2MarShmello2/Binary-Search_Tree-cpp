@@ -1,4 +1,3 @@
-
 //source code : https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/
 
 #include <iostream>
@@ -14,35 +13,38 @@ Tree::Tree()
 {  
 _root = NULL;   
 }
-void Tree::insert(Node *treeNode,int data)
+void Tree::insert(Node *root,int data)
 { 
-   if(contains(treeNode,data)){throw std::invalid_argument( "number is already exist" );return;}
-     if (treeNode == NULL)
+   //check if the number already exist
+   if(contains(root,data)){throw std::invalid_argument( "number is already exist" );return;}
+    
+   if (root == NULL)
         {
-                Node *treeNode = new Node(data);           
-                _root = treeNode;           
+	//initilize the tree if t is the first node
+                Node *root = new Node(data);           
+                _root = root;           
         }
         else
         {
-                if (data < treeNode->data)
+                if (data < root->data)
                 {
-                        if (!treeNode->left)
+                        if (!root->left)
                         {
-                                Node *treeTemp = new Node(data);
-                                treeNode->left = treeTemp;
+                                Node *temp = new Node(data);
+                                root->left = temp;
                         }
                         else
-                                insert(treeNode->left, data);
+                                insert(root->left, data);
                 }
                 else
                 {
-                        if (!treeNode->right)
+                        if (!root->right)
                         {
-                                Node *treeTemp = new Node(data);                         
-                                treeNode->right = treeTemp;
+                                Node *temp = new Node(data);                         
+                                root->right = temp;
                         }
                         else
-                                insert(treeNode->right, data);
+                                insert(root->right, data);
                 }
         }
 }
@@ -56,86 +58,135 @@ Node * Tree::minValueNode(Node *root)
   
     return current; 
 } 
-Node * Tree::deleteNode(Node *root, int key){
-if(!contains(root,key)){throw std::invalid_argument( "number is not exist" );return NULL;}
+void Tree::searchData(Node* &curr, int data, Node* &parent)
+{
+	// traverse the tree and search for the key
+	while (curr != nullptr && curr->data != data)
+	{
+		// update parent node as current node
+		parent = curr;
+
+		// if given key is less than the current node, go to left subtree
+		// else go to right subtree
+		if (data < curr->data)
+			curr = curr->left;
+		else
+			curr = curr->right;
+	}
+}
+void Tree::deleteNode(Node *&root, int data){
+if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return ;}
 // base case 
-    if (root == NULL) return root; 
-  
-    // If the key to be deleted is smaller than the root's key, 
-    // then it lies in left subtree 
-    if (key < root->data) 
-        root->left = deleteNode(root->left, key); 
-  
-    // If the key to be deleted is greater than the root's key, 
-    // then it lies in right subtree 
-    else if (key > root->data) 
-        root->right = deleteNode(root->right, key); 
-  
-    // if key is same as root's key, then This is the node 
-    // to be deleted 
-    else
-    { 
-        // node with only one child or no child 
-        if (root->left == NULL) 
-        { 
-            Node *temp = root->right;
-            delete root; 
-            return temp; 
-        } 
-        else if (root->right == NULL) 
-        { 
-            Node *temp = root->left;
-            delete root; 
-            return temp; 
-        } 
-  
-        // node with two children: Get the inorder successor (smallest 
-        // in the right subtree) 
-        Node *temp = minValueNode(root->right); 
-  
-        // Copy the inorder successor's content to this node 
-        root->data = temp->data; 
-  
-        // Delete the inorder successor 
-        root->right = deleteNode(root->right, temp->data); 
-    } 
-    return root; 
+   
+	// pointer to store parent node of current node
+	Node* parent = nullptr;
+
+	// start with root node
+	Node* curr = root;
+
+	// search key in BST and set its parent pointer
+	searchData(curr, data, parent);
+
+	// return if key is not found in the tree
+	if (curr == nullptr)
+		return;
+
+	// Case 1: node to be deleted has no children i.e. it is a leaf node
+	if (curr->left == nullptr && curr->right == nullptr)
+	{
+		// if node to be deleted is not a root node, then set its
+		// parent left/right child to null
+		if (curr != root)
+		{
+			if (parent->left == curr)
+				parent->left = nullptr;
+			else
+				parent->right = nullptr;
+		}
+		// if tree has only root node, delete it and set root to null
+		else
+			root = nullptr;
+
+		// deallocate the memory
+		delete curr;	 
+	}
+
+	// Case 2: node to be deleted has two children
+	else if (curr->left && curr->right)
+	{
+		// find its in-order successor node
+		Node* successor = minValueNode(curr->right);
+
+		// store successor value
+		int val = successor->data;
+
+		// recursively delete the successor. Note that the successor
+		// will have at-most one child (right child)
+		deleteNode(root, successor->data);
+
+		// Copy the value of successor to current node
+		curr->data = val;
+	}
+
+	// Case 3: node to be deleted has only one child
+	else
+	{
+		// find child node
+		Node* child = (curr->left)? curr->left: curr->right;
+
+		// if node to be deleted is not a root node, then set its parent
+		// to its child
+		if (curr != root)
+		{
+			if (curr == parent->left)
+				parent->left = child;
+			else
+				parent->right = child;
+		}
+
+		// if node to be deleted is root node, then set the root to child
+		else
+			root = child;
+
+		// deallocate the memory
+		delete curr;
+	}
 }
 
-int Tree::_size(Node *treeNode){
+int Tree::size(Node *root){
 	
-	if(treeNode==NULL || treeNode->data == 0){
+	if(root==NULL){
 		return 0 ;
 }
 	else 
-		return 1+_size(treeNode->left)+_size(treeNode->right);
+		return 1+size(root->left)+size(root->right);
 }
-bool Tree::contains(Node *treeNode,int data){
-  if (treeNode == NULL) return false;
+bool Tree::contains(Node *root,int data){
+  if (root == NULL) return false;
   else {
-    if (data == treeNode->data)
+    if (data == root->data)
         return true;
-    else if (data < treeNode->data)
-             return contains(treeNode->left, data);      
-    else if (data > treeNode->data)
-             return contains(treeNode->right, data);
+    else if (data < root->data)
+             return contains(root->left, data);      
+    else if (data > root->data)
+             return contains(root->right, data);
     else
     	return false;	
   }
 
 	
 }
-void Tree::deleteTree(Node *treeNode) 
+void Tree::deleteTree(Node *root) 
 {
-        if (!treeNode)
+        if (!root)
                 return;
 
-        Node * curTreeNode = treeNode;
-        Node * leftTreeNode = treeNode->left;
-        Node * rightTreeNode = treeNode->right;
-        delete curTreeNode;
-        deleteTree(leftTreeNode);
-        deleteTree(rightTreeNode);
+        Node * curroot = root;
+        Node * leftroot = root->left;
+        Node * rightroot = root->right;
+        delete curroot;
+        deleteTree(leftroot);
+        deleteTree(rightroot);
 }
 Tree::~Tree()
 {
@@ -145,60 +196,60 @@ int Tree::root(){
 return _root->data;
 }
 
-int Tree::parent(Node* pRoot, int value)
+int Tree::parent(Node* root, int data)
 {
-    if(pRoot->left == NULL && pRoot->right == NULL)
+    if(root->left == NULL && root->right == NULL)
        return -1;
-    int currentVal = pRoot->data;	
-    if( (pRoot->left != NULL && pRoot->left->data == value)
-        || (pRoot->right != NULL && pRoot->right->data == value))
-       return pRoot->data;
+    int currentVal = root->data;	
+    if( (root->left != NULL && root->left->data == data)
+        || (root->right != NULL && root->right->data == data))
+       return root->data;
 
-    if(pRoot->data > value)
-       return parent(pRoot->left,value);
+    if(root->data > data)
+       return parent(root->left,data);
 
-    if(pRoot->data < value)
-       return parent(pRoot->right,value);
+    if(root->data < data)
+       return parent(root->right,data);
     return currentVal;
 }
 
 
 
-int Tree::left(Node* pRoot, int value){
-   if(!contains(pRoot,value)){throw std::invalid_argument( "number is not exist" );return -1;}
-    if(pRoot->left == NULL && pRoot->right == NULL)
+int Tree::left(Node* root, int data){
+   if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
+    if(root->left == NULL && root->right == NULL)
        return -1;
-   int currentVal = pRoot->data;
-    if(pRoot->left != NULL && pRoot->data == value)
-       return pRoot->left->data;
+   int currentVal = root->data;
+    if(root->left != NULL && root->data == data)
+       return root->left->data;
 
-    if(pRoot->data > value)
-       return parent(pRoot->left,value);
+    if(root->data > data)
+       return parent(root->left,data);
 
-    if(pRoot->data < value)
-       return parent(pRoot->right,value);
+    if(root->data < data)
+       return parent(root->right,data);
  return currentVal;
 }
 
-int Tree::right(Node* pRoot, int value){
- if(pRoot->left == NULL && pRoot->right == NULL)
+int Tree::right(Node* root, int data){
+ if(root->left == NULL && root->right == NULL)
        return -1;
-int currentVal = pRoot->data;
-    if(pRoot->right != NULL && pRoot->data == value)
-       return pRoot->right->data;
+int currentVal = root->data;
+    if(root->right != NULL && root->data == data)
+       return root->right->data;
 
-    if(pRoot->data > value)
-       return parent(pRoot->left,value);
+    if(root->data > data)
+       return parent(root->left,data);
 
-    if(pRoot->data < value)
-       return parent(pRoot->right,value);
+    if(root->data < data)
+       return parent(root->right,data);
  return currentVal;
 }
-void Tree::print(Node *_root){
-   if (_root != NULL) {   
-      print(_root->left);
-      cout<<_root->data<<" ";
-      print(_root->right);
+void Tree::print(Node *root){
+   if (root != NULL) {   
+      print(root->left);
+      cout<<root->data<<" ";
+      print(root->right);
    }
  
 }
