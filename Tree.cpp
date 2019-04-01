@@ -204,9 +204,9 @@ int Tree::parent(Node* root, int data)
 	cout << "parent" << endl;
 		cout << data << endl;
 
-    if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
+    if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );}
     if(root->left == nullptr && root->right == nullptr)
-       throw std::invalid_argument( "no parent,its the root" );return -1;
+       throw std::invalid_argument( "no parent,its the root" );
     int currentVal = root->data;	
     if( (root->left != nullptr && root->left->data == data)
         || (root->right != nullptr && root->right->data == data))
