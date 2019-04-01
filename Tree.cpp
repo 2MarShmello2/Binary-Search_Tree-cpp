@@ -13,7 +13,7 @@ namespace ariel{
 Tree::Tree()
 {  
 	count++;
-	cout << count << endl;
+	cout <<"bin" << count << endl;
 _root = nullptr;   
 }
 void Tree::insert(Node *root,int data)
