@@ -200,7 +200,10 @@ return _root->data;
 
 int Tree::parent(Node* root, int data)
 {
+
 	cout << "parent" << endl;
+		cout << data << endl;
+
     if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
     if(root->left == nullptr && root->right == nullptr)
        return -1;
