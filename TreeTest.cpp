@@ -64,18 +64,20 @@ int main() {
    .CHECK_OK    (bigtree.insert(18))
    .CHECK_OK    (bigtree.insert(0))
    .CHECK_THROWS(bigtree.insert(60))
-   .CHECK_THROWS(bigtree.left(1))
-   .CHECK_THROWS(bigtree.right(22))
-   .CHECK_EQUAL (bigtree.left(6),1)
+   .CHECK_EQUAL (bigtree.left(1),0)
+   .CHECK_EQUAL(bigtree.right(22),40)
+   .CHECK_THROWS (bigtree.left(6))
    .CHECK_EQUAL (bigtree.left(8),7)
-   .CHECK_EQUAL (bigtree.parent(40),20)
-   .CHECK_EQUAL (bigtree.parent(11),15)
+   .CHECK_EQUAL (bigtree.parent(40),22)
+   .CHECK_EQUAL (bigtree.parent(11),6)
    .CHECK_EQUAL (bigtree.parent(25),33)
    .CHECK_OK    (bigtree.remove(15))
    .CHECK_OK    (bigtree.remove(11))
+   .CHECK_EQUAL (bigtree.size(),16)	
    .CHECK_OK    (bigtree.remove(33))
    .CHECK_OK    (bigtree.remove(0))
    .CHECK_OK    (bigtree.remove(18))
+   .CHECK_EQUAL (bigtree.size(),13)	
    .CHECK_EQUAL (bigtree.contains(20), true)
    .CHECK_EQUAL (bigtree.contains(2), true)
    .CHECK_EQUAL (bigtree.contains(11), false)
@@ -85,6 +87,9 @@ int main() {
 
 
   .print();
+
   
   cout << "You have " << tc.right() << " right answers and " << tc.wrong() << " wrong answers so your grade is " << tc.grade() << ". Great!" << endl;
+return 0;
+
 }

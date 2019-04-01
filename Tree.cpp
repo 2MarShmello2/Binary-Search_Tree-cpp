@@ -11,14 +11,14 @@ using namespace std;
 namespace ariel{
 Tree::Tree()
 {  
-_root = NULL;   
+_root = nullptr;   
 }
 void Tree::insert(Node *root,int data)
 { 
    //check if the number already exist
    if(contains(root,data)){throw std::invalid_argument( "number is already exist" );return;}
     
-   if (root == NULL)
+   if (root == nullptr)
         {
 	//initilize the tree if t is the first node
                 Node *root = new Node(data);           
@@ -28,7 +28,7 @@ void Tree::insert(Node *root,int data)
         {
                 if (data < root->data)
                 {
-                        if (!root->left)
+                        if (root->left == nullptr)
                         {
                                 Node *temp = new Node(data);
                                 root->left = temp;
@@ -38,7 +38,7 @@ void Tree::insert(Node *root,int data)
                 }
                 else
                 {
-                        if (!root->right)
+                        if (root->right==nullptr)
                         {
                                 Node *temp = new Node(data);                         
                                 root->right = temp;
@@ -50,10 +50,11 @@ void Tree::insert(Node *root,int data)
 }
 Node * Tree::minValueNode(Node *root) 
 { 
+    
     Node *current = root; 
   
     /* loop down to find the leftmost leaf */
-    while (current->left != NULL) 
+    while (current->left != nullptr) 
         current = current->left; 
   
     return current; 
@@ -155,14 +156,14 @@ if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );re
 
 int Tree::size(Node *root){
 	
-	if(root==NULL){
+	if(root==nullptr){
 		return 0 ;
 }
 	else 
 		return 1+size(root->left)+size(root->right);
 }
 bool Tree::contains(Node *root,int data){
-  if (root == NULL) return false;
+  if (root == nullptr) return false;
   else {
     if (data == root->data)
         return true;
@@ -198,11 +199,12 @@ return _root->data;
 
 int Tree::parent(Node* root, int data)
 {
-    if(root->left == NULL && root->right == NULL)
+    if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
+    if(root->left == nullptr && root->right == nullptr)
        return -1;
     int currentVal = root->data;	
-    if( (root->left != NULL && root->left->data == data)
-        || (root->right != NULL && root->right->data == data))
+    if( (root->left != nullptr && root->left->data == data)
+        || (root->right != nullptr && root->right->data == data))
        return root->data;
 
     if(root->data > data)
@@ -217,36 +219,39 @@ int Tree::parent(Node* root, int data)
 
 int Tree::left(Node* root, int data){
    if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
-    if(root->left == NULL && root->right == NULL)
-       return -1;
    int currentVal = root->data;
-    if(root->left != NULL && root->data == data)
+    if(root->left != nullptr && root->data == data)
        return root->left->data;
 
     if(root->data > data)
-       return parent(root->left,data);
+       return left(root->left,data);
 
     if(root->data < data)
-       return parent(root->right,data);
+       return left(root->right,data);
+
+    if(root->left == nullptr)
+       {throw std::invalid_argument( "no left value" );return -1;};
  return currentVal;
 }
 
 int Tree::right(Node* root, int data){
- if(root->left == NULL && root->right == NULL)
-       return -1;
+ if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
 int currentVal = root->data;
-    if(root->right != NULL && root->data == data)
+    if(root->right != nullptr && root->data == data)
        return root->right->data;
 
     if(root->data > data)
-       return parent(root->left,data);
+       return right(root->left,data);
 
     if(root->data < data)
-       return parent(root->right,data);
+       return right(root->right,data);
+
+    if(root->right == nullptr)
+      {throw std::invalid_argument( "no right value" );return -1;};
  return currentVal;
 }
 void Tree::print(Node *root){
-   if (root != NULL) {   
+   if (root != nullptr) {   
       print(root->left);
       cout<<root->data<<" ";
       print(root->right);
