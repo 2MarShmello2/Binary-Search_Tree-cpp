@@ -258,7 +258,7 @@ int currentVal = root->data;
        return right(root->right,data);
 
     if(root->right == nullptr)
-      {throw std::invalid_argument( "no right value" );}
+      {cout << "error" << endl;throw std::invalid_argument( "no right value" );}
  return currentVal;
 }
 void Tree::print(Node *root){
