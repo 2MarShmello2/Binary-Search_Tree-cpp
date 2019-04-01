@@ -16,7 +16,7 @@ _root = nullptr;
 void Tree::insert(Node *root,int data)
 { 
 	cout << "insert" << endl;
-	cout << root->data << endl;
+	
    //check if the number already exist
    if(contains(root,data)){throw std::invalid_argument( "number is already exist" );return;}
     
