@@ -201,7 +201,7 @@ return _root->data;
 
 int Tree::parent(Node* root, int data)
 {
-   if (data==NULL && root==nullptr){throw std::invalid_argument( "number is null" );}
+   if (root==nullptr){throw std::invalid_argument( "number is null" );}
 	cout << "parent" << endl;
 		cout << data << endl;
 
