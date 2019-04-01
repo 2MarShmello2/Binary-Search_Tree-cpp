@@ -245,7 +245,7 @@ int Tree::right(Node* root, int data){
 	cout << "right" << endl;
 		cout << data << endl;
 
- if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
+ if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );}
 int currentVal = root->data;
     if(root->right != nullptr && root->data == data)
        return root->right->data;
@@ -257,7 +257,7 @@ int currentVal = root->data;
        return right(root->right,data);
 
     if(root->right == nullptr)
-      {throw std::invalid_argument( "no right value" );return -1;};
+      {throw std::invalid_argument( "no right value" );}
  return currentVal;
 }
 void Tree::print(Node *root){
