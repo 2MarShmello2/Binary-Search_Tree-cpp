@@ -256,9 +256,12 @@ int currentVal = root->data;
 
     if(root->data < data)
        return right(root->right,data);
-
-    if(root->right == nullptr)
-      {cout << "error" << endl;throw std::invalid_argument( "no right value" );}
+std::runtime_error invalid_argument("no right value");	
+try {
+if(root->right == nullptr)
+      throw invalid_argument ;
+}
+    
  return currentVal;
 }
 void Tree::print(Node *root){
