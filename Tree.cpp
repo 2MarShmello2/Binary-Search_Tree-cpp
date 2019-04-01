@@ -9,11 +9,9 @@ using namespace std;
 
 
 namespace ariel{
-	int count =0;
+	
 Tree::Tree()
 {  
-	count++;
-	cout <<"bin" << count << endl;
 _root = nullptr;   
 }
 void Tree::insert(Node *root,int data)
