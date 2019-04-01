@@ -16,6 +16,7 @@ _root = nullptr;
 void Tree::insert(Node *root,int data)
 { 
 	cout << "insert" << endl;
+	cout << root->data << endl;
    //check if the number already exist
    if(contains(root,data)){throw std::invalid_argument( "number is already exist" );return;}
     
@@ -200,6 +201,7 @@ return _root->data;
 
 int Tree::parent(Node* root, int data)
 {
+	cout << "parent" << endl;
     if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
     if(root->left == nullptr && root->right == nullptr)
        return -1;
@@ -219,6 +221,7 @@ int Tree::parent(Node* root, int data)
 
 
 int Tree::left(Node* root, int data){
+	cout << "left" << endl;
    if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
    int currentVal = root->data;
     if(root->left != nullptr && root->data == data)
@@ -236,6 +239,7 @@ int Tree::left(Node* root, int data){
 }
 
 int Tree::right(Node* root, int data){
+	cout << "right" << endl;
  if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
 int currentVal = root->data;
     if(root->right != nullptr && root->data == data)
