@@ -210,7 +210,7 @@ void Tree::deleteTree(Node *root)
 */
 int Tree::root(){
 	if(_root ==nullptr){
-        throw std::runtime_error ("a runtime error")
+        throw std::runtime_error ("a runtime error");
     }
 return _root->data;
 }
