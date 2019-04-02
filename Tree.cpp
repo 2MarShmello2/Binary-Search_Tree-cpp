@@ -16,7 +16,7 @@ Tree::Tree()
 _root = nullptr;   
 }
 void Tree::insert(Node *root,int data)
-{ 	cout << "insert" << endl;
+{ 	print();
 
 	cout << data << endl;
    //check if the number already exist
@@ -86,7 +86,7 @@ void Tree::searchData(Node* &curr, int data, Node* &parent)
 	}
 }
 void Tree::deleteNode(Node *&root, int data){
-if(!contains(root,data)){try {
+if(!contains(root,data)){print();try {
         throw std::runtime_error ("a runtime error");
     }
     catch (std::runtime_error &e) {
@@ -94,7 +94,7 @@ if(!contains(root,data)){try {
                   << e.what () << '\n';
     }}
 // base case 
-   
+   print();
 	// pointer to store parent node of current node
 	Node* parent = nullptr;
 
