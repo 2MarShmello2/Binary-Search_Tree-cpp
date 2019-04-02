@@ -50,7 +50,7 @@ void Tree::insert(Node *root,int data)
                                 insert(root->right, data);
                 }
         }
-	if(size(_root)==4){print(root);}
+	
 }
 Node * Tree::minValueNode(Node *root) 
 { 
