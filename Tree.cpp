@@ -68,7 +68,7 @@ Node * Tree::minValueNode(Node *root)
   
     return current; 
 } 
-void Tree::searchData(Node* &curr, int data, Node* &parent)
+void Tree::searchData(Node* curr, int data, Node* parent)
 {
 	// traverse the tree and search for the key
 	while (curr != nullptr && curr->data != data)
@@ -84,7 +84,7 @@ void Tree::searchData(Node* &curr, int data, Node* &parent)
 			curr = curr->right;
 	}
 }
-void Tree::deleteNode(Node *&root, int data){
+void Tree::deleteNode(Node *root, int data){
 if(!contains(root,data)){print();try {
         throw std::runtime_error ("a runtime error");
     }
