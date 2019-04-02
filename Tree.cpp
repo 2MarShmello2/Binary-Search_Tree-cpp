@@ -326,7 +326,13 @@ void Tree::print(Node *root){
       cout<<root->data<<" ";
       print(root->right);
    }
- 
+ else{try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
 }
 };
 
