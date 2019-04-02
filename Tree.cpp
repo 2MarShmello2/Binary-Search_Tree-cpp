@@ -16,6 +16,7 @@ _root = nullptr;
 }
 void Tree::insert(Node *root,int data)
 { 
+	cout << "insert" << endl;
    if(root != nullptr)
 	
      print(root);
@@ -80,7 +81,7 @@ void Tree::searchData(Node* &curr, int data, Node* &parent)
 	}
 }
 void Tree::deleteNode(Node * &root, int data){
-
+	cout << "remove" << endl;
 	if(contains(root,data)==false)
 		throw std::invalid_argument("a runtime error");
 
@@ -164,7 +165,7 @@ void Tree::deleteNode(Node * &root, int data){
 }
 
 int Tree::size(Node *root){
-	
+	cout << "size" << endl;
 	if(root==nullptr){
 		return 0 ;
 }
@@ -172,6 +173,7 @@ int Tree::size(Node *root){
 		return 1+size(root->left)+size(root->right);
 }
 bool Tree::contains(Node *root,int data){
+	cout << "contains" << endl;
   if (root == nullptr) {return false;}
   else {
     if (data == root->data)
@@ -206,12 +208,14 @@ Tree::~Tree()
         deleteTree(_root);
 }
 int Tree::root(){
+	cout << "root" << endl;
   if(_root==nullptr){throw std::invalid_argument("a runtime error");}
   return _root->data;
 }
 
 int Tree::parent(Node* root, int data)
 {
+	cout << "parent" << endl;
     if(!contains(root,data)){ throw std::invalid_argument("a runtime error");}
     if(root->left == nullptr && root->right == nullptr)
        return -1;
@@ -231,6 +235,7 @@ int Tree::parent(Node* root, int data)
 
 
 int Tree::left(Node* root, int data){
+	cout << "left" << endl;
    if(!contains(root,data)){
 throw std::invalid_argument("a runtime error");}
    int currentVal = root->data;
@@ -249,6 +254,7 @@ throw std::invalid_argument("a runtime error");}
 }
 
 int Tree::right(Node* root, int data){
+	cout << "right" << endl;
  if(!contains(root,data)){
   throw std::invalid_argument("a runtime error");
 }
@@ -269,6 +275,7 @@ throw std::invalid_argument("a runtime error");
  return currentVal;
 }
 void Tree::print(Node *root){
+	cout << "print" << endl;
    if (root != nullptr) {   
       print(root->left);
       cout<<root->data<<" ";
