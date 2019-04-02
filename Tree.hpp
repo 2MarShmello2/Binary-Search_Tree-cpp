@@ -16,9 +16,9 @@ class Tree{
 private:
 	Node *_root ;
 	int size(Node *root);
-	void insert(Node *root, int data);
+	//void insert(Node *root, int data);
 	bool contains(Node *root,int data);
-	//void deleteNode(Node *&root, int data);
+	void deleteNode(Node *&root, int data);
 	Node* minValueNode(Node *root);
 	void deleteTree(Node *root);
 	int parent(Node *root, int data);
@@ -31,8 +31,8 @@ public:
 	Tree();  // constructor     
 	//~Tree(); // destructor
 	void deleteTree() {deleteTree(_root);}
-        void insert(int data){insert(_root, data);} 
- 	//void remove(int data){deleteNode(_root,data);};
+       // void insert(int data){insert(_root, data);} 
+ 	void remove(int data){deleteNode(_root,data);};
 	int size(){return size(_root);};
 	bool contains(int data){return contains(_root,data);};
 	int root();
