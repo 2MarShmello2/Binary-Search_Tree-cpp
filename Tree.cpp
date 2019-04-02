@@ -209,11 +209,11 @@ int Tree::root(){
 int Tree::parent(Node* root, int data)
 {
     if(!contains(root,data)){
-        throw std::invalid_argument ("there is no "+data+" in the tree");
+        throw std::invalid_argument ("there is no  in the tree");
     }
     
     if(root->left == nullptr && root->right == nullptr)
-       throw std::invalid_argument ( data +" is the root");
+       throw std::invalid_argument ( " is the root");
     int currentVal = root->data;	
     if( (root->left != nullptr && root->left->data == data)
         || (root->right != nullptr && root->right->data == data))
