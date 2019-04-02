@@ -1,9 +1,8 @@
+//source code : https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/
+
 #include <iostream>
-#include <stdexcept>
 #include "Tree.hpp"
-
-#include <exception>
-
+#include <stdexcept>
 using namespace std;
 
 
@@ -17,9 +16,8 @@ _root = nullptr;
 }
 void Tree::insert(Node *root,int data)
 { 
-	cout<<"insert"<<endl;
    //check if the number already exist
-   if(contains(root,data)){throw std::invalid_argument( "number is already exist" );}
+   if(contains(root,data)){throw invalid_argument( "number is already exist" );}
     
    if (root == nullptr)
         {
@@ -62,7 +60,7 @@ Node * Tree::minValueNode(Node *root)
   
     return current; 
 } 
-void Tree::searchData(Node* curr, int data, Node* parent)
+void Tree::searchData(Node* &curr, int data, Node* &parent)
 {
 	// traverse the tree and search for the key
 	while (curr != nullptr && curr->data != data)
@@ -78,16 +76,20 @@ void Tree::searchData(Node* curr, int data, Node* parent)
 			curr = curr->right;
 	}
 }
-void Tree::deleteNode(Node *root, int data){
-		cout<<"deleteNode"<<endl;
-
+void Tree::deleteNode(Node * &root, int data){
+try{
 	if(contains(root,data)==false){
-		
-        		throw std::invalid_argument ("a runtime error");
+		throw std::invalid_argument("a runtime error");
+	}
+}
+catch(std::exception const& e){	
+        		std::cout << "Exception: " <<e.what() << "\n";
     		
 	}
+
+
 // base case 
-   
+  
 	// pointer to store parent node of current node
 	Node* parent = nullptr;
 
@@ -164,8 +166,7 @@ void Tree::deleteNode(Node *root, int data){
 }
 
 int Tree::size(Node *root){
-		cout<<"size"<<endl;
-
+	
 	if(root==nullptr){
 		return 0 ;
 }
@@ -173,9 +174,7 @@ int Tree::size(Node *root){
 		return 1+size(root->left)+size(root->right);
 }
 bool Tree::contains(Node *root,int data){
-		cout<<"contain"<<endl;
-
-  if (root == nullptr) return false;
+  if (root == nullptr) {cout << "d" << endl; return false;}
   else {
     if (data == root->data)
         return true;
@@ -192,6 +191,7 @@ bool Tree::contains(Node *root,int data){
 void Tree::deleteTree(Node *root) 
 {
 	
+	
         if (!root)
                 return;
 
@@ -204,29 +204,19 @@ void Tree::deleteTree(Node *root)
 }
 Tree::~Tree()
 {
+
         deleteTree(_root);
 }
 int Tree::root(){
-		cout<<"root"<<endl;
-
-  if(_root==nullptr)
-  {
-        throw std::invalid_argument ("a runtime error");
-    }
-    
+  if(_root==nullptr){throw runtime_error ("a runtime error");}
   return _root->data;
 }
 
 int Tree::parent(Node* root, int data)
 {
-		cout<<"parent"<<endl;
-
-    if(!contains(root,data)){
-        throw std::invalid_argument ("there is no  in the tree");
-    }
-    
+    if(!contains(root,data)){ throw runtime_error ("a runtime error");}
     if(root->left == nullptr && root->right == nullptr)
-       throw std::invalid_argument ( " is the root");
+       return -1;
     int currentVal = root->data;	
     if( (root->left != nullptr && root->left->data == data)
         || (root->right != nullptr && root->right->data == data))
@@ -243,12 +233,8 @@ int Tree::parent(Node* root, int data)
 
 
 int Tree::left(Node* root, int data){
-		cout<<"left"<<endl;
-
    if(!contains(root,data)){
-
-       throw std::invalid_argument ("a runtime error");
-   }
+throw runtime_error ("a runtime error");}
    int currentVal = root->data;
     if(root->left != nullptr && root->data == data)
        return root->left->data;
@@ -259,18 +245,14 @@ int Tree::left(Node* root, int data){
     if(root->data < data)
        return left(root->right,data);
 
-    if(root->left == nullptr){
-              		throw std::invalid_argument ("a runtime error");
-}
+    if(root->left == nullptr)
+       {throw runtime_error ("a runtime error");};
  return currentVal;
 }
 
 int Tree::right(Node* root, int data){
-		cout<<"right"<<endl;
-
  if(!contains(root,data)){
-           		throw std::invalid_argument ("a runtime error");
-
+   throw runtime_error ("a runtime error");
 }
 int currentVal = root->data;
      if(root->right != nullptr && root->data == data)
@@ -283,15 +265,12 @@ int currentVal = root->data;
        return right(root->right,data);
  
     if(root->right == nullptr) {
-        		throw std::invalid_argument ("a runtime error");
-
+throw runtime_error ("a runtime error");
          }
      
  return currentVal;
 }
 void Tree::print(Node *root){
-		cout<<"print"<<endl;
-
    if (root != nullptr) {   
       print(root->left);
       cout<<root->data<<" ";
@@ -300,3 +279,6 @@ void Tree::print(Node *root){
  
 }
 };
+
+
+
