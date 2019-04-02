@@ -19,7 +19,13 @@ void Tree::insert(Node *root,int data)
 
 	cout << data << endl;
    //check if the number already exist
-   if(contains(root,data)){throw std::invalid_argument( "number is already exist" );}
+   if(contains(root,data)){ttry {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
     
    if (root == nullptr)
         {
@@ -79,7 +85,13 @@ void Tree::searchData(Node* &curr, int data, Node* &parent)
 	}
 }
 void Tree::deleteNode(Node *&root, int data){
-if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return ;}
+if(!contains(root,data)){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
 // base case 
    
 	// pointer to store parent node of current node
@@ -202,13 +214,30 @@ return _root->data;
 
 int Tree::parent(Node* root, int data)
 {
-   if (root==nullptr){throw std::invalid_argument( "number is null" );}
+   if (root==nullptr){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
 	cout << "parent" << endl;
 		cout << data << endl;
 
-    if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );}
-    if(root->left == nullptr && root->right == nullptr)
-       throw std::invalid_argument( "no parent,its the root" );
+    if(!contains(root,data)){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
+    if(root->left == nullptr && root->right == nullptr){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
     int currentVal = root->data;	
     if( (root->left != nullptr && root->left->data == data)
         || (root->right != nullptr && root->right->data == data))
@@ -226,7 +255,13 @@ int Tree::parent(Node* root, int data)
 
 int Tree::left(Node* root, int data){
 	cout << "left" << endl;
-   if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );return -1;}
+   if(!contains(root,data)){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
    int currentVal = root->data;
     if(root->left != nullptr && root->data == data)
        return root->left->data;
@@ -238,7 +273,13 @@ int Tree::left(Node* root, int data){
        return left(root->right,data);
 
     if(root->left == nullptr)
-       {throw std::invalid_argument( "no left value" );return -1;};
+       {try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }};
  return currentVal;
 }
 
@@ -246,7 +287,13 @@ int Tree::right(Node* root, int data){
 	cout << "right" << endl;
 		cout << data << endl;
 
- if(!contains(root,data)){throw std::invalid_argument( "number is not exist" );}
+ if(!contains(root,data)){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
 int currentVal = root->data;
     if(root->right != nullptr && root->data == data)
        return root->right->data;
