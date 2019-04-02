@@ -204,11 +204,11 @@ void Tree::deleteTree(Node *root)
         deleteTree(leftroot);
         deleteTree(rightroot);
 }
-/*Tree::~Tree()
+Tree::~Tree()
 {
         deleteTree(_root);
 }
-*/
+
 int Tree::root(){
 	if(_root ==nullptr){try {
         throw std::runtime_error ("a runtime error");
