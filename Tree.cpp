@@ -77,15 +77,10 @@ void Tree::searchData(Node* &curr, int data, Node* &parent)
 	}
 }
 void Tree::deleteNode(Node * &root, int data){
-try{
-	if(contains(root,data)==false){
+
+	if(contains(root,data)==false)
 		throw std::invalid_argument("a runtime error");
-	}
-}
-catch(std::exception const& e){	
-        		std::cout << "Exception: " <<e.what() << "\n";
-    		
-	}
+
 
 
 // base case 
@@ -174,7 +169,7 @@ int Tree::size(Node *root){
 		return 1+size(root->left)+size(root->right);
 }
 bool Tree::contains(Node *root,int data){
-  if (root == nullptr) {cout << "d" << endl; return false;}
+  if (root == nullptr) {return false;}
   else {
     if (data == root->data)
         return true;
@@ -208,13 +203,13 @@ Tree::~Tree()
         deleteTree(_root);
 }
 int Tree::root(){
-  if(_root==nullptr){throw runtime_error ("a runtime error");}
+  if(_root==nullptr){throw std::invalid_argument("a runtime error");}
   return _root->data;
 }
 
 int Tree::parent(Node* root, int data)
 {
-    if(!contains(root,data)){ throw runtime_error ("a runtime error");}
+    if(!contains(root,data)){ throw std::invalid_argument("a runtime error");}
     if(root->left == nullptr && root->right == nullptr)
        return -1;
     int currentVal = root->data;	
@@ -234,7 +229,7 @@ int Tree::parent(Node* root, int data)
 
 int Tree::left(Node* root, int data){
    if(!contains(root,data)){
-throw runtime_error ("a runtime error");}
+throw std::invalid_argument("a runtime error");}
    int currentVal = root->data;
     if(root->left != nullptr && root->data == data)
        return root->left->data;
@@ -246,13 +241,13 @@ throw runtime_error ("a runtime error");}
        return left(root->right,data);
 
     if(root->left == nullptr)
-       {throw runtime_error ("a runtime error");};
+       {throw std::invalid_argument("a runtime error");};
  return currentVal;
 }
 
 int Tree::right(Node* root, int data){
  if(!contains(root,data)){
-   throw runtime_error ("a runtime error");
+  throw std::invalid_argument("a runtime error");
 }
 int currentVal = root->data;
      if(root->right != nullptr && root->data == data)
@@ -265,7 +260,7 @@ int currentVal = root->data;
        return right(root->right,data);
  
     if(root->right == nullptr) {
-throw runtime_error ("a runtime error");
+throw std::invalid_argument("a runtime error");
          }
      
  return currentVal;
