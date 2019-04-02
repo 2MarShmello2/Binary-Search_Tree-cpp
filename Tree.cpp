@@ -341,6 +341,7 @@ void Tree::print(Node *root){
                   << e.what () << '\n';
     }
      }
+}
 };
 
 
