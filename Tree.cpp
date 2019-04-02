@@ -85,7 +85,7 @@ void Tree::searchData(Node* &curr, int data, Node* &parent)
 			curr = curr->right;
 	}
 }
-/*void Tree::deleteNode(Node *&root, int data){
+void Tree::deleteNode(Node *&root, int data){
 if(!contains(root,data)){try {
         throw std::runtime_error ("a runtime error");
     }
@@ -169,7 +169,7 @@ if(!contains(root,data)){try {
 		delete curr;
 	}
 }
-*/
+
 int Tree::size(Node *root){
 	
 	if(root==nullptr){
