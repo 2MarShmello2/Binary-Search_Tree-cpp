@@ -198,27 +198,22 @@ Tree::~Tree()
         deleteTree(_root);
 }
 int Tree::root(){
-  if(_root==nullptr){try {
-        throw std::runtime_error ("a runtime error");
+  if(_root==nullptr)
+  {
+        throw std::invalid_argument ("a runtime error");
     }
-    catch (std::runtime_error &e) {
-        std::cout << "no right value "
-                  << e.what () << '\n';
-    }}
+    
   return _root->data;
 }
 
 int Tree::parent(Node* root, int data)
 {
-    if(!contains(root,data)){try {
-        throw std::runtime_error ("a runtime error");
+    if(!contains(root,data)){
+        throw std::invalid_argument ("there is no "+data+" in the tree");
     }
-    catch (std::runtime_error &e) {
-        std::cout << "no right value "
-                  << e.what () << '\n';
-    }}
+    
     if(root->left == nullptr && root->right == nullptr)
-       return -1;
+       throw std::invalid_argument ( data +" is the root");
     int currentVal = root->data;	
     if( (root->left != nullptr && root->left->data == data)
         || (root->right != nullptr && root->right->data == data))
