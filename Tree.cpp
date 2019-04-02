@@ -210,6 +210,13 @@ Tree::~Tree()
         deleteTree(_root);
 }
 int Tree::root(){
+	if(root ==nullptr){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
 return _root->data;
 }
 
