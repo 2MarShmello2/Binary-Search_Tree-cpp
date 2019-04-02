@@ -18,14 +18,14 @@ private:
 	int size(Node *root);
 	void insert(Node *root, int data);
 	bool contains(Node *root,int data);
-	void deleteNode(Node *root, int data);
+	void deleteNode(Node *&root, int data);
 	Node* minValueNode(Node *root);
 	void deleteTree(Node *root);
 	int parent(Node *root, int data);
 	int left(Node* pRoot, int data);
 	int right(Node* pRoot, int data);
 	void print(Node *root);
-	void searchData(Node* curr, int data, Node* parent);
+	void searchData(Node* &curr, int data, Node* &parent);
 	
 public:
 	Tree();  // constructor     
