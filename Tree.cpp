@@ -16,9 +16,8 @@ Tree::Tree()
 _root = nullptr;   
 }
 void Tree::insert(Node *root,int data)
-{ 	print();
-
-	cout << data << endl;
+{ 	
+	print();
    //check if the number already exist
    if(contains(root,data)){try {
         throw std::runtime_error ("a runtime error");
@@ -57,7 +56,7 @@ void Tree::insert(Node *root,int data)
                                 insert(root->right, data);
                 }
         }
-
+}
 Node * Tree::minValueNode(Node *root) 
 { 
     
