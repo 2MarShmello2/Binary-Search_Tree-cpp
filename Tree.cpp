@@ -239,7 +239,7 @@ int Tree::parent(Node* root, int data)
         std::cout << "no right value "
                   << e.what () << '\n';
     */return -1;}
-			    }
+			//    }
     if(root->left == nullptr && root->right == nullptr){
 	 /*   try {
         		throw std::runtime_error ("a runtime error");
