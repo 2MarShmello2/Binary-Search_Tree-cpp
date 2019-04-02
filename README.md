@@ -1,3 +1,6 @@
+##### Create by:
+Omer Hadida, Avichay Nega, Oren Zauda
+
 # Binary-Search_Tree-cpp
 
 Task 2 is designed to train us in writing departments, building and dismantling,
