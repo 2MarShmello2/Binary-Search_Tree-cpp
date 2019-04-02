@@ -1,6 +1,7 @@
 //source code : https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/
 
 #include <iostream>
+#include <stdexcept>
 #include "Tree.hpp"
 using namespace std;
 
