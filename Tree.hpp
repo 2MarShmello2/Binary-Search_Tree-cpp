@@ -29,7 +29,7 @@ private:
 	
 public:
 	Tree();  // constructor     
-	//~Tree(); // destructor
+	~Tree(); // destructor
 	void deleteTree() {deleteTree(_root);}
         void insert(int data){insert(_root, data);} 
  	void remove(int data){deleteNode(_root,data);};
