@@ -307,7 +307,7 @@ int currentVal = root->data;
 
     if(root->data < data)
        return right(root->right,data);
-else{
+if(root->right == nullptr){
        try {
         throw std::runtime_error ("a runtime error");
     }
