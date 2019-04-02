@@ -15,7 +15,7 @@ Tree::Tree()
 {  
 _root = nullptr;   
 }
-/*void Tree::insert(Node *root,int data)
+void Tree::insert(Node *root,int data)
 { 	cout << "insert" << endl;
 
 	cout << data << endl;
@@ -57,7 +57,7 @@ _root = nullptr;
                                 insert(root->right, data);
                 }
         }
-}*/
+}
 Node * Tree::minValueNode(Node *root) 
 { 
     
@@ -85,7 +85,7 @@ void Tree::searchData(Node* &curr, int data, Node* &parent)
 			curr = curr->right;
 	}
 }
-void Tree::deleteNode(Node *&root, int data){
+/*void Tree::deleteNode(Node *&root, int data){
 if(!contains(root,data)){try {
         throw std::runtime_error ("a runtime error");
     }
@@ -169,7 +169,7 @@ if(!contains(root,data)){try {
 		delete curr;
 	}
 }
-
+*/
 int Tree::size(Node *root){
 	
 	if(root==nullptr){
