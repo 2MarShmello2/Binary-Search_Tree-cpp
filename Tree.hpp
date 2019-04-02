@@ -25,7 +25,7 @@ private:
 	int left(Node* pRoot, int data);
 	int right(Node* pRoot, int data);
 	void print(Node *root);
-	void searchData(Node* &curr, int data, Node* &parent);
+	void searchData(Node* curr, int data, Node* parent);
 	
 public:
 	Tree();  // constructor     
