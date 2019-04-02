@@ -19,7 +19,7 @@ void Tree::insert(Node *root,int data)
 
 	cout << data << endl;
    //check if the number already exist
-   if(contains(root,data)){ttry {
+   if(contains(root,data)){try {
         throw std::runtime_error ("a runtime error");
     }
     catch (std::runtime_error &e) {
