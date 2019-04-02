@@ -225,8 +225,6 @@ int Tree::parent(Node* root, int data)
     if(!contains(root,data)){
         throw std::runtime_error ("a runtime error");
     }
- 
-			    }
     if(root->left == nullptr && root->right == nullptr){
         		throw std::runtime_error ("a runtime error");
     }
