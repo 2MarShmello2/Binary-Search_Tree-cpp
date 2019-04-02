@@ -19,13 +19,10 @@ void Tree::insert(Node *root,int data)
 { 	
 	print();
    //check if the number already exist
-   if(contains(root,data)){try {
+   if(contains(root,data)){
         throw std::runtime_error ("a runtime error");
     }
-    catch (std::runtime_error &e) {
-        std::cout << "no right value "
-                  << e.what () << '\n';
-    }}
+   
     
    if (root == nullptr)
         {
