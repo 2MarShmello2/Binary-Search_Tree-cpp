@@ -256,9 +256,16 @@ int currentVal = root->data;
 
     if(root->data < data)
        return right(root->right,data);
-else
-       throw std::invalid_argument("no right value");
-
+else{
+       try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }
+     
+}
     
  return currentVal;
 }
