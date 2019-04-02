@@ -15,7 +15,7 @@ Tree::Tree()
 {  
 _root = nullptr;   
 }
-void Tree::insert(Node *root,int data)
+/*void Tree::insert(Node *root,int data)
 { 	cout << "insert" << endl;
 
 	cout << data << endl;
@@ -57,7 +57,7 @@ void Tree::insert(Node *root,int data)
                                 insert(root->right, data);
                 }
         }
-}
+}*/
 Node * Tree::minValueNode(Node *root) 
 { 
     
