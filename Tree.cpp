@@ -213,7 +213,7 @@ int Tree::root(){
 
 int Tree::parent(Node* root, int data)
 {
-	cout << "parent" << endl;
+	
     if(!contains(root,data)){ throw std::invalid_argument("a runtime error");}
     if(root->left == nullptr && root->right == nullptr)
        return -1;
