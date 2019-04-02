@@ -1,23 +1,31 @@
+//source code : https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/
 
 #include <iostream>
+#include <stdexcept>
 #include "Tree.hpp"
-
 using namespace std;
 
-
+#include <exception>
 
 
 
 namespace ariel{
+	
 Tree::Tree()
 {  
 _root = nullptr;   
 }
 void Tree::insert(Node *root,int data)
-{ 
-	cout<<"insert"<<endl;
+{ 	
+	print();
    //check if the number already exist
-   if(contains(root,data)){throw std::invalid_argument( "number is already exist" );}
+   if(contains(root,data)){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
     
    if (root == nullptr)
         {
@@ -37,7 +45,7 @@ void Tree::insert(Node *root,int data)
                         else
                                 insert(root->left, data);
                 }
-                else
+                else if (data > root->data)
                 {
                         if (root->right==nullptr)
                         {
@@ -60,7 +68,7 @@ Node * Tree::minValueNode(Node *root)
   
     return current; 
 } 
-void Tree::searchData(Node* curr, int data, Node* parent)
+void Tree::searchData(Node* &curr, int data, Node* &parent)
 {
 	// traverse the tree and search for the key
 	while (curr != nullptr && curr->data != data)
@@ -76,16 +84,16 @@ void Tree::searchData(Node* curr, int data, Node* parent)
 			curr = curr->right;
 	}
 }
-void Tree::deleteNode(Node *root, int data){
-		cout<<"deleteNode"<<endl;
-
-	if(contains(root,data)==false){
-		
-        		throw std::invalid_argument ("a runtime error");
-    		
-	}
+void Tree::deleteNode(Node *&root, int data){
+if(!contains(root,data)){print();try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
 // base case 
-   
+   print();
 	// pointer to store parent node of current node
 	Node* parent = nullptr;
 
@@ -162,8 +170,7 @@ void Tree::deleteNode(Node *root, int data){
 }
 
 int Tree::size(Node *root){
-		cout<<"size"<<endl;
-
+	
 	if(root==nullptr){
 		return 0 ;
 }
@@ -171,8 +178,6 @@ int Tree::size(Node *root){
 		return 1+size(root->left)+size(root->right);
 }
 bool Tree::contains(Node *root,int data){
-		cout<<"contain"<<endl;
-
   if (root == nullptr) return false;
   else {
     if (data == root->data)
@@ -189,7 +194,6 @@ bool Tree::contains(Node *root,int data){
 }
 void Tree::deleteTree(Node *root) 
 {
-	
         if (!root)
                 return;
 
@@ -200,31 +204,46 @@ void Tree::deleteTree(Node *root)
         deleteTree(leftroot);
         deleteTree(rightroot);
 }
-Tree::~Tree()
+/*Tree::~Tree()
 {
         deleteTree(_root);
 }
+*/
 int Tree::root(){
-		cout<<"root"<<endl;
-
-  if(_root==nullptr)
-  {
-        throw std::invalid_argument ("a runtime error");
+	if(_root ==nullptr){try {
+        throw std::runtime_error ("a runtime error");
     }
-    
-  return _root->data;
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
+return _root->data;
 }
 
 int Tree::parent(Node* root, int data)
 {
-		cout<<"parent"<<endl;
+   if (root==nullptr){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
 
     if(!contains(root,data)){
-        throw std::invalid_argument ("there is no  in the tree");
+        throw std::runtime_error ("a runtime error");
     }
-    
-    if(root->left == nullptr && root->right == nullptr)
-       throw std::invalid_argument ( " is the root");
+ 
+			    }
+    if(root->left == nullptr && root->right == nullptr){
+	    try {
+        		throw std::runtime_error ("a runtime error");
+          	}
+    	    catch (std::runtime_error &e) {
+        		std::cout << "no right value "
+                  		<< e.what () << '\n';
+   	        }
+    }
     int currentVal = root->data;	
     if( (root->left != nullptr && root->left->data == data)
         || (root->right != nullptr && root->right->data == data))
@@ -241,12 +260,14 @@ int Tree::parent(Node* root, int data)
 
 
 int Tree::left(Node* root, int data){
-		cout<<"left"<<endl;
-
-   if(!contains(root,data)){
-
-       throw std::invalid_argument ("a runtime error");
-   }
+	cout << "left" << endl;
+   if(!contains(root,data)){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
    int currentVal = root->data;
     if(root->left != nullptr && root->data == data)
        return root->left->data;
@@ -257,44 +278,67 @@ int Tree::left(Node* root, int data){
     if(root->data < data)
        return left(root->right,data);
 
-    if(root->left == nullptr){
-              		throw std::invalid_argument ("a runtime error");
-}
+    if(root->left == nullptr)
+       {try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
  return currentVal;
 }
 
 int Tree::right(Node* root, int data){
-		cout<<"right"<<endl;
+	cout << "right" << endl;
+		cout << data << endl;
 
- if(!contains(root,data)){
-           		throw std::invalid_argument ("a runtime error");
-
-}
+ if(!contains(root,data)){try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }}
 int currentVal = root->data;
-     if(root->right != nullptr && root->data == data)
+    if(root->right != nullptr && root->data == data)
        return root->right->data;
 
-     if(root->data > data)
+    if(root->data > data)
        return right(root->left,data);
 
     if(root->data < data)
        return right(root->right,data);
- 
-    if(root->right == nullptr) {
-        		throw std::invalid_argument ("a runtime error");
-
-         }
+if(root->right == nullptr){
+       try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }
      
+}
+    
  return currentVal;
 }
 void Tree::print(Node *root){
-		cout<<"print"<<endl;
-
    if (root != nullptr) {   
       print(root->left);
       cout<<root->data<<" ";
       print(root->right);
    }
- 
+ else{try {
+        throw std::runtime_error ("a runtime error");
+    }
+    catch (std::runtime_error &e) {
+        std::cout << "no right value "
+                  << e.what () << '\n';
+    }
+     }
 }
 };
+
+
+
+
