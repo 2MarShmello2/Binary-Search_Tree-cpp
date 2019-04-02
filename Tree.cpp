@@ -216,7 +216,7 @@ int Tree::parent(Node* root, int data)
 {
 	
     if(!contains(root,data)){ throw std::invalid_argument("a runtime error");}
-    if(root->left == nullptr && root->right == nullptr)
+    if((root->left == nullptr && root->right == nullptr) || (_root->data ==data))
        throw std::invalid_argument( "number is already exist" );
     int currentVal = root->data;	
     if( (root->left != nullptr && root->left->data == data)
