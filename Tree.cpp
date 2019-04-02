@@ -339,8 +339,8 @@ void Tree::print(Node *root){
     catch (std::runtime_error &e) {
         std::cout << "no right value "
                   << e.what () << '\n';
-    }}
-}
+    }
+     }
 };
 
 
