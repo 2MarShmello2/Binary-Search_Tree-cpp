@@ -4,7 +4,7 @@
 #include "Tree.hpp"
 using namespace std;
 
-
+#include <exception>
 
 
 
@@ -256,11 +256,9 @@ int currentVal = root->data;
 
     if(root->data < data)
        return right(root->right,data);
-std::runtime_error invalid_argument("no right value");	
-try {
-if(root->right == nullptr)
-      throw invalid_argument ;
-}
+else
+       throw std::invalid_argument("no right value");
+
     
  return currentVal;
 }
