@@ -46,7 +46,7 @@ void Tree::insert(Node *root,int data)
                         else
                                 insert(root->left, data);
                 }
-                else
+                else if (data > root->data)
                 {
                         if (root->right==nullptr)
                         {
