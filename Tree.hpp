@@ -18,7 +18,7 @@ private:
 	int size(Node *root);
 	void insert(Node *root, int data);
 	bool contains(Node *root,int data);
-	void deleteNode(Node *&root, int data);
+	void deleteNode(Node *root, int data);
 	Node* minValueNode(Node *root);
 	void deleteTree(Node *root);
 	int parent(Node *root, int data);
