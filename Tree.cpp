@@ -16,7 +16,7 @@ _root = nullptr;
 }
 void Tree::insert(Node *root,int data)
 { 
-	if(size(_root)==4){print(root);}
+	
    
    //check if the number already exist
    if(contains(root,data)){throw std::invalid_argument( "number is already exist" );}
@@ -50,6 +50,7 @@ void Tree::insert(Node *root,int data)
                                 insert(root->right, data);
                 }
         }
+	if(size(_root)==4){print(root);}
 }
 Node * Tree::minValueNode(Node *root) 
 { 
