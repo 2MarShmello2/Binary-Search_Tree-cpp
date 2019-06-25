@@ -1,5 +1,5 @@
-##### Create by:
-Omer Hadida, Avichay Nega, Oren Zauda
+##### Created by:
+Avichay Nega, [Omer Hadida](https://github.com/2MarShmello2), [Oren Zauda](https://github.com/OrenZauda)
 
 # Binary-Search_Tree-cpp
 
