@@ -1,7 +1,7 @@
 ##### Created by:
 Avichay Nega, [Omer Hadida](https://github.com/2MarShmello2), [Oren Zauda](https://github.com/OrenZauda)
 
-# Binary-Search_Tree-cpp
+# Binary Search Tree cpp
 
 Task 2 is designed to train us in writing departments, building and dismantling,
 memory management, error handling, and especially writing tests.
